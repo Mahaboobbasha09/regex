@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #555;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #5c9fdf;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5c9fdf;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4a8bc2;
+        }
+
+        button:active {
+            background-color: #3e7fae;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="login-form">
+        <h1>Login Form</h1>
+        <label for="email">Email address</label><br>
+        <input type="email" id="a1" name="email" placeholder="Enter your email"><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="a2" name="password" placeholder="Enter your password"><br>
+        <button type="submit" id="btn">Submit</button>
+        <p class="error-message" id="error-msg"></p>
+    </form>
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault(); 
+            const inp1 = document.getElementById("a1").value;
+            const inp2 = document.getElementById("a2").value;
+            const errorMsg = document.getElementById("error-msg");
+            const username = /^[a-z0-9._]+@[a-z]+\.[a-z]{2,3}$/;
+            const password = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%?&])[a-zA-Z\d@$!%?&]{8,}$/;
+            if (!username.test(inp1)) {
+                errorMsg.textContent = "Invalid email format.";
+            } else if (!password.test(inp2)) {
+                errorMsg.textContent = "Password must be at least 8 characters long.";
+            } else {
+                alert("Login successful");
+                errorMsg.textContent = ""; 
+            }
+        });
+    </script>
+</body>
+</html>
